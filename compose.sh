@@ -7,7 +7,7 @@ docker-compose run app sh -c "python manage.py makemigrations && python manage.p
 elif [ $1 == "test" ]
 then
 echo "Testing"
-docker-compose run app sh -c "python manage.py test"
+docker-compose run app sh -c "python manage.py test && flake8"
 elif [ $1 == "startapp" ]
 then
 echo "Creating new app"

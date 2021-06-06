@@ -6,6 +6,7 @@ from recipes.serializers import (
     TagSerializer,
     IngredientSerializer,
     RecipeSerializer,
+    RecipeDetailSerializer,
 )
 from core.models import Tag, Ingredient, Recipe
 
@@ -41,3 +42,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user).order_by("-title")
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return RecipeDetailSerializer
+
+        return self.serializer_class

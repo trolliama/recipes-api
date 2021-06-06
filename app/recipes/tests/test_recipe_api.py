@@ -131,7 +131,7 @@ class PrivateRecipeApiTest(TestCase):
         self.assertIn(tag1, tags)
         self.assertIn(tag2, tags)
 
-    def test_create_recipe_with_tags(self):
+    def test_create_recipe_with_ingredients(self):
         ingredient1 = sample_ingredient(user=self.user, name="Carrot")
         ingredient2 = sample_ingredient(user=self.user, name="Apple")
         payload = {

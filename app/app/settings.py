@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
@@ -89,16 +90,6 @@ DATABASES = {
         "PASSWORD": os.environ.get("DB_PASS"),
     }
 }
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "HOST": "db",
-#         "NAME": "recipe",
-#         "USER": "postgres",
-#         "PASSWORD": "supersecretpassword",
-#         "PORT": 5432,
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

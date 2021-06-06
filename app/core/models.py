@@ -69,7 +69,7 @@ class Recipe(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
-    link = models.CharField(max_length=255)
+    link = models.CharField(max_length=255, blank=True)
     ingredients = models.ManyToManyField("Ingredient")
     tags = models.ManyToManyField("Tag")
 

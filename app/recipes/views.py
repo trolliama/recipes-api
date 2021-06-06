@@ -44,7 +44,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(user=self.request.user).order_by("-title")
 
     def get_serializer_class(self):
+        print("Action", self.action)
         if self.action == "retrieve":
             return RecipeDetailSerializer
 
         return self.serializer_class
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

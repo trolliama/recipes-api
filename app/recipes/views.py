@@ -21,7 +21,18 @@ class BaseRecipeViewSet(
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user).order_by("-name")
+        assigned_only = bool(
+            int(self.request.query_params.get("assigned_only", 0))
+        )
+        queryset = self.queryset
+        if assigned_only:
+            queryset = queryset.filter(recipe__isnull=False)
+
+        return (
+            queryset.filter(user=self.request.user)
+            .order_by("-name")
+            .distinct()
+        )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -44,7 +55,20 @@ class RecipeViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user).order_by("-title")
+        # Will get the tags param from the json post request
+        tags = self.request.query_params.get("tags")
+        # Will get the ingredients param from the json post request
+        ingredients = self.request.query_params.get("ingredients")
+        queryset = self.queryset
+
+        if tags:
+            tags_id = map(int, tags.split(","))
+            queryset = queryset.filter(tags__id__in=tags_id)
+        if ingredients:
+            ingredients_id = map(int, ingredients.split(","))
+            queryset = queryset.filter(ingredients__id__in=ingredients_id)
+
+        return queryset.filter(user=self.request.user).order_by("-title")
 
     def get_serializer_class(self):
         if self.action == "retrieve":

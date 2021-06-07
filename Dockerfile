@@ -30,7 +30,7 @@ RUN adduser -D user
 
 # Add permission to the user for the directory
 RUN chown -R user:user /vol/
-RUN chown -R 755 /vol/web
+RUN chmod -R 755 /vol/web
 
 # Changes to the user
 USER user

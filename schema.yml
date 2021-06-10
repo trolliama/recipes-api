@@ -1,0 +1,527 @@
+openapi: 3.0.2
+info:
+  description: "This is a simple recipes api that i made to learn RestAPI's with djangoRest framework.  You can find the source code at [https://github.com/trolliama/recipes-api/](https://github.com/trolliama/recipes-api/).    For this sample, you can use the api key `special-key` to test the authorization     filters."
+  title: "Recipes API"
+  version: "1.0.0"
+servers:
+  - url: https://127.0.0.1/api/
+    description: "Local Development"
+paths:
+  /api/user/me/:
+    get:
+      operationId: retrieveUser
+      description: "Retrieve the authenticated user"
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+      tags:
+        - api
+    put:
+      operationId: updateUser
+      description: "Update the authenticated user"
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+      tags:
+        - api
+    patch:
+      operationId: partialUpdateUser
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+      tags:
+        - api
+  /api/recipes/tags/:
+    get:
+      operationId: listTags
+      description: ""
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tag"
+          description: ""
+      tags:
+        - api
+    post:
+      operationId: createTag
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tag"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Tag"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Tag"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+          description: ""
+      tags:
+        - api
+  /api/recipes/ingredients/:
+    get:
+      operationId: listIngredients
+      description: ""
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ingredient"
+          description: ""
+      tags:
+        - api
+    post:
+      operationId: createIngredient
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Ingredient"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Ingredient"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Ingredient"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredient"
+          description: ""
+      tags:
+        - api
+  /api/recipes/recipe/:
+    get:
+      operationId: listRecipes
+      description: ""
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recipe"
+          description: ""
+      tags:
+        - api
+    post:
+      operationId: createRecipe
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+          description: ""
+      tags:
+        - api
+  /api/recipes/recipe/{id}/:
+    get:
+      operationId: retrieveRecipe
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this recipe.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecipeDetail"
+          description: ""
+      tags:
+        - api
+    put:
+      operationId: updateRecipe
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this recipe.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+          description: ""
+      tags:
+        - api
+    patch:
+      operationId: partialUpdateRecipe
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this recipe.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+          description: ""
+      tags:
+        - api
+    delete:
+      operationId: destroyRecipe
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this recipe.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: ""
+      tags:
+        - api
+  /api/user/create/:
+    post:
+      operationId: createUser
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+      tags:
+        - api
+  /api/user/token/:
+    post:
+      operationId: createAuthToken
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthToken"
+          description: ""
+      tags:
+        - api
+  /api/recipes/recipe/{id}/upload-image/:
+    post:
+      operationId: uploadImageRecipe
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this recipe.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecipeImage"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/RecipeImage"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RecipeImage"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecipeImage"
+          description: ""
+      tags:
+        - api
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: Authorization
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+          minLength: 5
+        name:
+          type: string
+          maxLength: 255
+      required:
+        - email
+        - password
+        - name
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 25
+      required:
+        - name
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+        - name
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        time_minutes:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        price:
+          type: string
+          format: decimal
+          multipleOf: 0.01
+          maximum: 1000
+          minimum: -1000
+        ingredients:
+          type: array
+          items:
+            type: integer
+        tags:
+          type: array
+          items:
+            type: integer
+        link:
+          type: string
+          maxLength: 255
+      required:
+        - title
+        - time_minutes
+        - price
+        - ingredients
+        - tags
+    RecipeDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        time_minutes:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        price:
+          type: string
+          format: decimal
+          multipleOf: 0.01
+          maximum: 1000
+          minimum: -1000
+        ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              name:
+                type: string
+                maxLength: 255
+            required:
+              - name
+          readOnly: true
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              name:
+                type: string
+                maxLength: 25
+            required:
+              - name
+          readOnly: true
+        link:
+          type: string
+          maxLength: 255
+      required:
+        - title
+        - time_minutes
+        - price
+    AuthToken:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    RecipeImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: binary
+          nullable: true

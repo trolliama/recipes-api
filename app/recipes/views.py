@@ -3,6 +3,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.parsers import FormParser
+
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from recipes.serializers import (
     TagSerializer,
@@ -53,6 +57,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    uploadImageParam = openapi.Parameter(
+        name="image",
+        in_=openapi.IN_FORM,
+        description="Recipe image",
+        required=True,
+        type=openapi.TYPE_FILE,
+    )
 
     def get_queryset(self):
         # Will get the tags param from the json post request
@@ -81,11 +92,19 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    # Schema for generate a form field to upload files
+    @swagger_auto_schema(manual_parameters=[uploadImageParam])
+
     # Create a custom action with method POST
     # The detail=True means that the action will be a child of the detail url.
     # The url_path means that the 'upload-image' will be the url name
     # Url = "/api/recipe/<pk:id>/upload-image"
-    @action(methods=["POST"], detail=True, url_path="upload-image")
+    @action(
+        methods=["POST"],
+        detail=True,
+        url_path="upload-image",
+        parser_classes=(FormParser,),  # Parser for the parameter on swagger ui
+    )
     def upload_image(self, request, pk=None):
         recipe = self.get_object()  # Get the recipe object from the request
 

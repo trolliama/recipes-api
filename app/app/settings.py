@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     # externals
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_yasg",
     # locals
     "core",
     "user",
     "recipes",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -135,3 +137,27 @@ STATIC_ROOT = "/vol/web/static"
 
 
 AUTH_USER_MODEL = "core.User"
+
+# Swagger Settings
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    },
+    "SECURITY_REQUIREMENTS": {"api_key": []},
+}
+
+SWAGGER_DESCRIPTION = (
+    "This is a simple recipes api that i made "
+    "to learn RestAPI's with djangoRest framework. "
+    "You can find the source code at "
+    "[https://github.com/trolliama/recipes-api/]"
+    "(https://github.com/trolliama/recipes-api/)."
+    " \n\nFor this sample, you can use the api key "
+    "`Token 68f61b02994beef0288820f6a8af87b089172e00`"
+    " to test the authorization filters"
+    " or just create a new user and get the api key from"
+    " the endpoint /api/user/token (don't forget to put `Token`"
+    " before the key)"
+)

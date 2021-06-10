@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.parsers import FormParser
+from rest_framework.parsers import MultiPartParser
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -57,12 +57,14 @@ class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    uploadImageParam = openapi.Parameter(
-        name="image",
-        in_=openapi.IN_FORM,
-        description="Recipe image",
-        required=True,
-        type=openapi.TYPE_FILE,
+    uploadImageParam = (  # Swagger upload-image endpoint parameter
+        openapi.Parameter(
+            name="image",
+            in_=openapi.IN_FORM,
+            description="Recipe image",
+            required=True,
+            type=openapi.TYPE_FILE,
+        )
     )
 
     def get_queryset(self):
@@ -103,7 +105,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=["POST"],
         detail=True,
         url_path="upload-image",
-        parser_classes=(FormParser,),  # Parser for the parameter on swagger ui
+        parser_classes=(
+            MultiPartParser,
+        ),  # Parser for the parameter on swagger ui
     )
     def upload_image(self, request, pk=None):
         recipe = self.get_object()  # Get the recipe object from the request

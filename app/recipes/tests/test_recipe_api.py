@@ -227,6 +227,7 @@ class RecipeImageUploadTest(TransactionTestCase):
     def test_upload_invalid_image(self):
         url = image_upload_url(self.recipe.id)
         res = self.client.post(url, {"image": "ntf"}, format="multipart")
+
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_filter_recipes_by_tags(self):

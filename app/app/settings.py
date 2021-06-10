@@ -145,7 +145,6 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"}
     },
-    "SECURITY_REQUIREMENTS": {"api_key": []},
 }
 
 SWAGGER_DESCRIPTION = (
@@ -155,9 +154,8 @@ SWAGGER_DESCRIPTION = (
     "[https://github.com/trolliama/recipes-api/]"
     "(https://github.com/trolliama/recipes-api/)."
     " \n\nFor this sample, you can use the api key "
-    "`Token 68f61b02994beef0288820f6a8af87b089172e00`"
+    "`68f61b02994beef0288820f6a8af87b089172e00`"
     " to test the authorization filters"
     " or just create a new user and get the api key from"
-    " the endpoint /api/user/token (don't forget to put `Token`"
-    " before the key)"
+    " the endpoint /api/user/token"
 )

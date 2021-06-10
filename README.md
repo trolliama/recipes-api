@@ -3,8 +3,6 @@ A pretty basic recipe API project made in djangoREST Framework for learning
 
 ![image](https://user-images.githubusercontent.com/21108976/121562445-d4d49380-c9ef-11eb-9387-4cddca01e4a5.png)
 
-> Online link to th api [here](https://heroku.com)
-
 ## Usage
 
 #### Docker

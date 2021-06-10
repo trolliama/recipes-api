@@ -1,56 +1,16 @@
 # Recipes API
 A pretty basic recipe API project made in djangoREST Framework for learning
 
-## Endpoints
-> Base url - 127.0.0.1:8000
+![image](https://user-images.githubusercontent.com/21108976/121562445-d4d49380-c9ef-11eb-9387-4cddca01e4a5.png)
 
-- #### POST
-  - **Create a new user**
-    > /api/user/create
-    
-    ```json
-    {
-      "email": "example@email.com",
-      "password": "examplepassword",
-      "name": "example"
-    }
-    ```
-  - **Create/Get user token**
-    > /api/user/token
-    
-    ```json
-    {
-      "email": "example@email.com",
-      "password": "examplepassword"
-    }
-    ```
-  - **Create new tags**
-    > /api/recipes/tags
-    
-    ```json
-    {
-      "name": "tag name"
-    }
-    ```
-  - **Create new ingredients**
-    > /api/recipes/ingredients
-    
-    ```json
-    {
-      "name": "ingredient name"
-    }
-    ```
-  - **Create new recipes**
-    > /api/recipes/recipe
-    
-    ```json
-    {
-      "title": "RecipeTitleExample",
-      "time_minutes": 12,
-      "price": 12.5,
-      "ingredients": [1,2],
-      "tags": [3],
-      "link": ""
-    }
-    ```
-  
+> Online link to th api [here](https://heroku.com)
+
+## Usage
+
+#### Docker
+ - Run the command `docker-compose build` to build the images and wait finish it
+ - Run `docker-compose up` to start the server
+
+#### Docs
+ - You can get all the endpoints at [http://127.0.0.1:8000/doc/](http://127.0.0.1:8000/doc/)
+ - Create a user or use the provided token in the docs. You will need it to access most of the endpoints

@@ -96,7 +96,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     # Schema for generate a form field to upload files
     @swagger_auto_schema(manual_parameters=[uploadImageParam])
-
     # Create a custom action with method POST
     # The detail=True means that the action will be a child of the detail url.
     # The url_path means that the 'upload-image' will be the url name

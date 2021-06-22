@@ -196,7 +196,7 @@ class PrivateRecipeApiTest(TestCase):
         self.assertEqual(recipe.price, payload["price"])
         tags = recipe.tags.all()
         self.assertEqual(len(tags), 0)
-
+               
     def test_filter_recipes_by_tags(self):
         recipe1 = sample_recipe(user=self.user, title="Thai vegetable curry")
         recipe2 = sample_recipe(user=self.user, title="Aubergine with tahini")
@@ -267,3 +267,8 @@ class RecipeImageUploadTest(TransactionTestCase):
         res = self.client.post(url, {"image": "ntf"}, format="multipart")
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 85dda39262fb238cc0b87727a3a34a32b19fdea2

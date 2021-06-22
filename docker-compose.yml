@@ -8,8 +8,6 @@ services:
       - "8000:8000"
     volumes: # Any change made on the project will be reflected on the container
       - ./app:/app
-      # python manage.py wait_for_db &&
-      #        python manage.py migrate &&
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
